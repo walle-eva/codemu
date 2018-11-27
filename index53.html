@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			li > ul{
+			  display: none;
+			}
+			.visible{
+			  display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>Рссия
+				<ul>
+					<li>Санкт-Петербург</li>
+					<li>Москва</li>
+				</ul>
+			</li>
+			<li>Чехия
+				<ul>
+					<li>Прага</li>
+					<li>Карловы Вары</li>
+				</ul>
+			</li>
+		<ul>
+
+				
+		<script>
+			
+			let ul = document.querySelectorAll('ul > li');
+			for(let i = 0; i < ul.length; i++){
+			  ul[i].addEventListener('click', show);
+			}  
+			
+			function show(event){
+			  if(event.target.closest('li')){
+				console.log(event.target.closest('li'))
+				  event.target.firstElementChild.classList.toggle('visible');  
+			  }
+			}			
+
+		</script>
+	</body>
+</html>

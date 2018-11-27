@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="text">
+	<p></p>
+		<script>
+			document.querySelector('input[type="text"]').addEventListener('blur', format);
+			
+			function format(){
+			  let date = document.querySelector('input').value;
+			  date = date.split('.');
+			  date = date.reverse();
+			  let day = ['вс','пн','вт','ср','чт','пт','сб'];
+			  let dateNew = new Date(date).getDay();
+			  let dayNew = day[dateNew];
+			  document.querySelector('p').innerHTML = dayNew;
+			}
+		</script>
+	</body>
+</html>

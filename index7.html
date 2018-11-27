@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="text">
+		<script>
+			document.querySelector('input[type="text"]').addEventListener('blur', word);
+			
+			function word(){
+			  let data = document.querySelector('input').value;
+			  data = data.split(' ');
+			  document.querySelector('input').value = '';
+			  document.querySelector('input').value = data.length;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>2</p>
+		<p>5</p>
+		<p>1</p>
+		<input type="button" value="MAX">
+		<script>
+			
+			document.querySelector('input').addEventListener('click', maxNumb);
+			
+			function maxNumb(){
+			  let p = document.querySelectorAll('p');
+			  let pValue = [].map.call(p, function(elem){
+			    return elem.innerHTML;
+			  })
+			  let maxValue = 0;
+			  let indent = 0;
+			  for(let i = 0; i < pValue.length; i++){
+			    if(maxValue < pValue[i]){
+				  maxValue = pValue[i];
+				  indent = i;
+				}
+			  }
+			  p[indent].style.background = '#ff0000';
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>Какой язык вы знаете?</p>
+		<input type="checkbox" value="html">html
+		<input type="checkbox" value="css">css
+		<input type="checkbox" value="js">js
+		<input type="checkbox" value="php">php
+		<p class="lang"></p>
+				
+		<script>
+
+			let input = document.querySelectorAll('input');
+			for(let i = 0; i < input.length; i++){
+			  input[i].addEventListener('click', lang);
+			}
+			
+			let arr = [];
+			function lang(){
+			  let p = document.querySelector('.lang');
+			  if(this.checked){
+			    arr.push(this.value); 	
+				p.innerHTML = arr;
+			  }
+			}
+
+		</script>
+	</body>
+</html>

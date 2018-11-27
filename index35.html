@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text" value="">
+		<input type="text" value="">
+		<input type="text" value="">
+		<script>
+
+			window.addEventListener('load', number);
+						
+			let numb = 0;
+			let i = 0;
+			function number(){
+			let input = document.querySelectorAll('input');
+			  input[i].value = numb;
+			  numb++;
+			  i++;
+			  if(i >=3){
+			    i = 0;
+			  }
+			}
+
+			setInterval(number, 1000);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<div>Длинный текст, который нужно обрезать и добавить троеточие.</div>
+		<div>Длинный текст, который нужно обрезать и добавить троеточие.</div>
+		<div>Длинный текст, который нужно обрезать и добавить троеточие.</div>
+				
+		<script>
+
+			window.addEventListener('load', cut);
+			
+			function cut(){
+			  let divs = document.querySelectorAll('div');
+			  for(let i = 0; i < divs.length; i++){
+			    divs[i].innerHTML = divs[i].innerHTML.slice(0, 10) + '...';
+			  }
+			}
+
+		</script>
+	</body>
+</html>

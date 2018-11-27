@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<style>
+	  p{
+	    background: #ff0000;
+	  }
+	  .green{
+	    background: #00ff00;
+	  }
+	</style>
+	</head>
+	<body>
+		<p>text</p>
+		<script>
+
+			
+			function color(){
+			  let p = document.querySelector('p');
+			  p.classList.toggle('green');
+			}
+			setInterval(color, 1000);
+			
+			
+
+		</script>
+	</body>
+</html>

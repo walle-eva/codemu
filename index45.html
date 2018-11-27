@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text">
+		<input type="button" value="PUSh">
+		<ul>
+		</ul>
+				
+		<script>
+
+			let button = document.querySelector('input[type="button"]');
+			button.addEventListener('click', list);
+			
+			function list(){
+			  let city = document.querySelector('input[type="text"]').value.split(',')
+			  let ul = document.querySelector('ul');
+			  for(let i = 0; i < city.length; i++){
+			    let li = document.createElement('li');
+				li.innerHTML = city[i];
+				ul.appendChild(li);
+			  }
+			}
+
+		</script>
+	</body>
+</html>

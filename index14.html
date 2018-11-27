@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="button" value="ЖМИ">
+	<p>a</p>
+	<p>b</p>
+		<script>
+			document.querySelector('input[type="button"]').addEventListener('click', number);
+			
+			function number(){
+			  let data = document.querySelectorAll('p');
+			  for(let i = 0; i < data.length; i++){
+			    data[i].innerHTML = data[i].innerHTML + ' ' + (i + 1); 
+			  }
+			}
+		</script>
+	</body>
+</html>

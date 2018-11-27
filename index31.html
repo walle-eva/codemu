@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text" value="">
+		<p></p>
+		<script>
+
+			document.querySelector('input').addEventListener('blur', count);
+			function count(){
+			  let numb = document.querySelector('input').value;
+			  let p = document.querySelector('p');
+			  p.innerHTML = numb;
+			  let timerId = setInterval(function(){
+			    numb--;
+				p.innerHTML = numb;
+				if(numb <= 0){
+			    clearTimeout(timerId);
+			  }
+			  }, 1000);
+			}
+			
+			
+
+		</script>
+	</body>
+</html>

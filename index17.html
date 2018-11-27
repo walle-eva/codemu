@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<a href="1.html">1</a>
+	<a href="2.html">2</a>
+	<a href="3.html">3</a>
+	<a href="http://4.html">4</a>
+		<script>
+			window.addEventListener('load', link);
+			
+			function link(){
+			  let links = document.querySelectorAll('a');
+			  for(let i = 0; i < links.length; i++){
+			    if(links[i].href.indexOf('http://') + 1){
+				  links[i].innerHTML = links[i].innerHTML + '&rarr';
+				}
+			  }
+			}
+		</script>
+	</body>
+</html>

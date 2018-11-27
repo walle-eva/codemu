@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<ul>
+		  <li>1</li>
+		  <li>2</li>
+		  <li>3</li>
+		</ul>
+		<input type="text">
+				
+		<script>
+
+			let input = document.querySelector('input');
+			input.addEventListener('change', color);
+			
+			function color(){
+			  let numb = +input.value;
+			  let li = document.querySelectorAll('li');
+			  li[numb].style.color = '#ff0000';
+			}
+
+		</script>
+	</body>
+</html>

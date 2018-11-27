@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>2</p>
+		<p>5</p>
+		<p>1</p>
+		<input type="text" value="0">
+		<script>
+			let push = 0;
+			let p = document.querySelectorAll('p');
+			for(let i = 0; i < p.length; i++){
+			  p[i].addEventListener('click', count);
+			}
+			
+			function count(){
+			  push++;
+			  document.querySelector('input').value = push;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text">
+		<p></p>
+				
+		<script>
+
+			let input = document.querySelector('input');
+			input.addEventListener('keydown', list);
+			
+			function list(event){
+			  let city = document.querySelector('input[type="text"]').value;
+			  let p = document.querySelector('p');
+			  if(event.keyCode == 13){
+			    p.innerHTML += city + ',';
+			  }
+			}
+
+		</script>
+	</body>
+</html>

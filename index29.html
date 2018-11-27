@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text" value="">
+		<input type="text" name="long" value="5">
+		<input type="button" value="RANDOM">
+		<script>
+
+			document.querySelector('input[type="button"]').addEventListener('click', rand);
+			
+			function rand(){
+			  let symbols = '0123456789qwertyuiopasdfghjklzxcvbnm';
+			  let long = document.querySelector('input[name="long"]').value
+			  let numb = '';
+			  for(let i = 0; i < long; i++){
+			    numb += symbols.charAt(Math.floor(Math.random() * symbols.length));
+			  }
+			  document.querySelector('input[type="text"]').value = numb;
+			}
+
+		</script>
+	</body>
+</html>

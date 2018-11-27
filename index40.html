@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="checkbox" checked>
+		<input type="text" value="">
+
+		<p class="lang"></p>
+				
+		<script>
+
+			let input = document.querySelector('input[type="checkbox"]');
+			input.addEventListener('click', visibl);
+			
+			function visibl(){
+			  let inputText = document.querySelector('input[type="text"]');
+			  if(!this.checked){
+			    inputText.style.display = 'none';
+			  } else {
+			    inputText.style.display = 'inline-block';
+			  }
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			.red{
+			  color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<p>JavaScript это тоже самое что и Java?</p>
+			<ul>
+				<li><label><input type="radio" name="first" value="Нет">Нет.</label></li>
+				<li><label><input type="radio" name="first" value="Да">Да.</label></li>
+				<li><label><input type="radio" name="first" value="Когда как">Когда как</label></li>
+			</ul>
+		<p>Сколько параментров можно передавать в фукнцию?</p>
+			<ul>
+				<li><label><input type="radio" name="second" value="Только столько, сколько указано при её создании">Только столько, сколько указано при ее созданиии</label></li>
+				<li><label><input type="radio" name="second" value="Минимум 1">Минимум 1.</label></li>
+				<li><label><input type="radio" name="second" value="Сколько угодно">Сколько угодно.</label></li>
+			</ul>	
+		<p>Что такое: "use strict"?</p>
+			<ul>
+				<li><label><input type="radio" name="third" value="Просто строка">Просто строка</label></li>
+				<li><label><input type="radio" name="third" value="Функция">Фукцния</label></li>
+				<li><label><input type="radio" name="third" value="Строгий режим">Строгий режим</label></li>
+			</ul>
+		<button>Проверить</button>
+		<div id="result"></div>
+		
+		<script>
+
+			let button = document.querySelector('button');
+			button.addEventListener('click', result);
+			
+			function result(){
+			  let answerRight = {first:'Нет', second:'Сколько угодно', third:'Строгий режим'};
+			  let answer = {};
+			  let input = document.querySelectorAll('input');
+			  
+			  for(let i = 0; i < input.length; i++){
+			    if(input[i].checked){
+				  answer[input[i].name] = input[i].value;
+				}
+			  }
+			  
+			  let count = 0;
+			  let div = document.querySelector('#result');
+			  let answerNo = 0;
+			  
+			  if(Object.keys(answerRight).length != Object.keys(answer).length){
+			    answerNo = Object.keys(answerRight).length - Object.keys(answer).length;
+			  }
+			  
+			  for(let k in answer){
+				if(answerRight[k] === answer[k]){
+				  count++;
+				}
+			  }
+
+			  div.innerHTML = 'Правильных ответов ' + count + '<br>' +
+								  'Неправильных ответов ' + (Object.keys(answerRight).length - count - answerNo) + '<br>' + 
+								  'Без ответов ' + answerNo;	
+			 
+			}
+
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

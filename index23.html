@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text" value="0">
+		<script>
+			
+			document.querySelector('input').addEventListener('blur', check);
+			
+			function check(){
+			  let numb = document.querySelector('input');
+			  if(numb.value >= 1 && numb.value <= 100 ){
+			    numb.style.borderColor = '#00ff00';
+			  } else {
+			    numb.style.borderColor = '#ff0000';
+			  }
+			}
+		</script>
+	</body>
+</html>

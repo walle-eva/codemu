@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="text" value="0">
+		<input type="button" value="-1">
+		<input type="button" value="+1">
+		<script>
+			
+			let button = document.querySelectorAll('input[type="button"]');
+			for(let i = 0; i < button.length; i++){
+			  button[i].addEventListener('click', change);
+			}
+			
+			function change(){
+			  let numb = document.querySelector('input[type="text"]');
+			  let number = +numb.value + +this.value;
+			  if(number >= 0){
+			    numb.value = number;
+			  } else {
+			    numb.value = 0;
+			  }
+			}
+		</script>
+	</body>
+</html>

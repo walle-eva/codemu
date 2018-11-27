@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			td{
+			  border: 1px solid #000;
+			  padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" value="0" class="tr" placeholder="ширина">		
+		<input type="text" value="0" class="td" placeholder="высота">
+		
+		
+		<script>
+
+			let first = document.querySelector('.tr');
+			first.addEventListener('change', func);
+			
+			let second = document.querySelector('.td');
+			second.addEventListener('change', func);
+			
+			function func(){
+			  var table = document.querySelector('table');
+			  if (table != undefined){
+				table.innerHTML = '';
+			  } else {
+				table = document.createElement('table');
+				document.body.appendChild(table);
+			  }
+			  
+			  if(first.value != 0 && second.value != 0){
+			   document.body.appendChild(table);
+			   for(let i = 0; i < first.value; i++){
+			     let tr = document.createElement('tr');
+				 table.appendChild(tr);
+				 for(let j = 0; j < second.value; j++){
+				   let td = document.createElement('td');
+				   td.innerHTML = i + '' + j;
+				   tr.appendChild(td);
+				 }
+			   }
+			  }
+			  
+			  
+			}
+
+		</script>
+	</body>
+</html>

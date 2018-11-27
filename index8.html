@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="text">
+		<script>
+			document.querySelector('input[type="text"]').addEventListener('blur', wordLong);
+			
+			function wordLong(){
+			  let data = document.querySelector('input').value;
+			  data = data.split(' ');
+			  let long = data.map(function(elem){
+			    return elem.length;
+			  })
+			  function maxi(a, b){
+			    return a - b;
+			  }
+			  long.sort(maxi);
+			  document.querySelector('input').value = '';
+			  document.querySelector('input').value = long[long.length-1];
+			}
+		</script>
+	</body>
+</html>

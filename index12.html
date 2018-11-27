@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="text">
+	<p></p>
+		<script>
+			document.querySelector('input[type="text"]').addEventListener('blur', word);
+			
+			function word(){
+			  let data = document.querySelector('input').value;
+			  let dataDirect = data.split('');
+			  let dataReverse = data.split('').reverse();
+			  let flag = '';
+			  for(let i = 0; i < dataDirect.length; i++){
+			    if(dataDirect[i] == dataReverse[i]){
+				  flag = 'TRUE';
+				} else {
+				  flag = 'FALSE';
+				}
+			  }
+			  
+			  document.querySelector('p').innerHTML = flag;
+			}
+		</script>
+	</body>
+</html>

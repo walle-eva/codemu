@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="text">
+		<script>
+			document.querySelector('input[type="text"]').addEventListener('blur', format);
+			
+			function format(){
+			  let data = document.querySelector('input').value;
+			  data = data.split('.');
+			  data = data.reverse();
+			  data = data.join('-')
+			  document.querySelector('input').value = data;
+			}
+		</script>
+	</body>
+</html>

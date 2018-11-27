@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<img src="asset/1.jpg">
+	<img src="asset/2.jpg">
+	<img src="asset/3.png">
+
+		<script>
+			let img = document.querySelectorAll('img');
+			for(let i = 0; i < img.length; i++){
+			  img[i].addEventListener('click', loop);
+			}
+			function loop(event){
+			  let getStyle = getComputedStyle(event.target);
+			  event.target.style.width = parseInt(getStyle.width) * 2 + 'px';
+			}
+		</script>
+	</body>
+</html>

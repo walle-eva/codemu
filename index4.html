@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="text" class="numb">
+	<p></p>
+		<script>
+			let button = document.querySelector('input[type="text"]').addEventListener('blur', summa);
+			
+			function summa(){
+			  let numb = document.querySelector('.numb').value;
+			  numb = numb.split(',');
+			  let summa = 0;
+			  for(let i = 0; i < numb.length; i++){
+			    summa += (+numb[i]);
+			  }
+			  document.querySelector('p').innerHTML = summa/numb.length;
+			}
+		</script>
+	</body>
+</html>

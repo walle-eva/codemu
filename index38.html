@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>Какой язык вы знаете?</p>
+		<input type="radio" value="html" name="lang">html
+		<input type="radio" value="css" name="lang">css
+		<input type="radio" value="js" name="lang">js
+		<input type="radio" value="php" name="lang">php
+		<p class="lang"></p>
+				
+		<script>
+
+			let input = document.querySelectorAll('input');
+			for(let i = 0; i < input.length; i++){
+			  input[i].addEventListener('click', lang);
+			}
+						
+			function lang(){
+			let p = document.querySelector('.lang');
+			p.innerHTML = this.value;	
+			}
+
+
+		</script>
+	</body>
+</html>

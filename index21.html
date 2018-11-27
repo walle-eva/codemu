@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<style>
+			.min{
+			  width: 30px;
+			}
+			.max{
+			  width: 50px;
+			  display: none;
+			}
+		</style>
+	</head>
+	<body>
+	<img class = "min" src="asset/1.jpg">
+	<img class = "min" src="asset/2.jpg">
+	<img class = "min" src="asset/3.png">
+	<br><br>
+	<img class = "max" src="asset/1.jpg">
+	<img class = "max" src="asset/2.jpg">
+	<img class = "max" src="asset/3.png">
+
+		<script>
+			let img = document.querySelectorAll('.min');
+			for(let i = 0; i < img.length; i++){
+			  img[i].addEventListener('click', loop);
+			}
+			function loop(){
+			  let imgMax = document.querySelectorAll('.max');
+			  for(let i = 0; i < img.length; i++){
+			    if(img[i].src == event.target.src){
+				  imgMax[i].style.display = 'inline-block'; 
+				}
+			  }
+			}
+			
+		</script>
+	</body>
+</html>

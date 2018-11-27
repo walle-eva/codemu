@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<img src="asset/1.jpg">
+	<img src="asset/2.jpg">
+	<img src="asset/3.png">
+
+		<script>
+			let img = document.querySelectorAll('img');
+			for(let i = 0; i < img.length; i++){
+			  img[i].addEventListener('click', loop);
+			}
+			function loop(){
+			  this.width = this.width * 2;
+			  this.addEventListener('click', unloop);
+			}
+			
+			function unloop(){
+			  this.width = this.width / 4;
+			  this.removeEventListener('click', unloop);
+			  this.addEventListener('click', loop);
+			}
+		</script>
+	</body>
+</html>

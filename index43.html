@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>Большой пребольшой абзац</p>
+		<input type="checkbox" value="cross">зачеркнуть
+		<input type="checkbox" value="bold">сделать жирным
+		<input type="checkbox" value="red">сделать красным
+				
+		<script>
+
+			let input = document.querySelectorAll('input');
+			for(let i = 0; i < input.length; i++){
+			  input[i].addEventListener('change', action);
+			}
+			
+			function action(){
+			  let p = document.querySelector('p');
+			  if(this.checked && this.value == 'cross'){
+			    p.style.textDecoration = 'line-through';
+			  } else {
+			    p.style.textDecoration = 'none';
+			  }
+			  
+			  if(this.checked && this.value == 'bold'){
+			    p.style.fontWeight = 'bold';
+			  } else {
+			    p.style.fontWeight = 'normal';
+			  }
+			  
+			  if(this.checked && this.value == 'red'){
+			    p.style.color = 'red';
+			  } else {
+			    p.style.color = '';
+			  }
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			.hidden{
+			  display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<select id="country">
+			<option value="rf">Россия</option>
+			<option value="f">Франция</option>
+			<option value="ch">Чехия</option>
+		</select>
+		<select id="city">
+			<option value="rus">Москва</option>
+			<option value="rus">Санкт-Петербург</option>
+			<option value="rus">Новосибирск</option>
+			<option value="fr" >Париж</option>
+			<option value="fr">Марсель</option>
+			<option value="fr">Лиль</option>
+			<option value="check">Прага</option>
+			<option value="check">Карловы Вары</option>
+			<option value="check">Чески Крумлов</option>
+		</select>
+		<p></p>
+				
+		<script>
+			
+			let select = document.querySelector('#country');
+			select.addEventListener('click', show);
+			
+			document.querySelector('#city').selectedIndex = -1;
+			
+			function show(event){
+			  let optionsCountry = document.querySelectorAll('#country > option');
+			  let optionsCity = document.querySelectorAll('#city > option')
+			  for(let i = 0; i < optionsCountry.length; i++){
+			    if(optionsCountry[i].selected == true && optionsCountry[i].value == 'rf'){
+				  for(let j = 0; j < optionsCity.length; j++){
+				    if(optionsCity[j].value != 'rus'){
+					  optionsCity[j].classList.add('hidden')
+					}else{
+					  optionsCity[j].classList.remove('hidden')
+					}
+				  }
+			    }
+				
+				if(optionsCountry[i].selected == true && optionsCountry[i].value == 'f'){
+				  for(let j = 0; j < optionsCity.length; j++){
+				    if(optionsCity[j].value != 'fr'){
+					  optionsCity[j].classList.add('hidden')
+					}else{
+					  optionsCity[j].classList.remove('hidden')
+					}
+				  }
+			    }
+				
+				if(optionsCountry[i].selected == true && optionsCountry[i].value == 'ch'){
+				  for(let j = 0; j < optionsCity.length; j++){
+				    if(optionsCity[j].value != 'check'){
+					  optionsCity[j].classList.add('hidden')
+					}else{
+					  optionsCity[j].classList.remove('hidden')
+					}
+				  }
+			    }
+			  }
+			}			
+
+		</script>
+	</body>
+</html>

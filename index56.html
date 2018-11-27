@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			.hidden{
+			  display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<select name="first">
+			<option value="rur">Рубль</option>
+			<option value="usd">Доллар</option>
+			<option value="eur">Евро</option>
+		</select>
+
+		<select name="second">
+			<option value="rur">Рубль</option>
+			<option value="usd">Доллар</option>
+			<option value="eur">Евро</option>
+		</select>
+				
+		<input type="text" value="summa">
+		<p></p>
+		
+		<script>
+			
+			let rates = {'rur':1.00, 'usd':70, 'eur':80};
+
+			let first = document.querySelector('select[name="first"]');
+			first.addEventListener('change', func);
+			
+			let second = document.querySelector('select[name="second"]');
+			second.addEventListener('change', func);
+			
+			let input = document.querySelector('input');
+			input.addEventListener('keyup', func);
+			
+			function func(){
+			  if(first.value != second.value && !isNaN(input.value)){
+			    let result;
+				if(first.value == 'rur'){
+				  result = input.value * rates[first.value] / rates[second.value];
+				  document.querySelector('p').innerHTML = result;
+				} 
+
+				if(first.value == 'usd'){
+				  result = input.value * rates[first.value] / rates[second.value];
+				  document.querySelector('p').innerHTML = result;
+				} 
+				
+				if(first.value == 'eur'){
+				  result = input.value * rates[first.value] / rates[second.value];
+				  document.querySelector('p').innerHTML = result;
+				} 
+			  }
+			  if(first.value == second.value){
+			    document.querySelector('p').innerHTML = 'Выберите другую валюту';
+			  }
+			  if(!input.value){
+			    document.querySelector('p').innerHTML = 'Введите сумму';
+			  }
+			  
+			}
+
+		</script>
+	</body>
+</html>

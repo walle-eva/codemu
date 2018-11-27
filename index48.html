@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			td{
+			  border: 1px solid #000;
+			  padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr><td>1</td><td>5</td></tr>
+			<tr><td>240</td><td>170</td></tr>
+			<tr><td>22</td><td>1</td></tr>
+			<tr><td>50</td><td>10</td></tr>
+		</table>
+		<br>
+		<button>MAX</button>
+				
+		<script>
+
+			let button = document.querySelector('button');
+			button.addEventListener('click', maxNumb);
+			
+			function maxNumb(){
+			  let td = document.querySelectorAll('td');
+			  let max = 0;
+			  let tdMax = 0;
+			  for(let i = 0; i < td.length; i++){
+			    if(+td[i].innerHTML > max){
+				  max = td[i].innerHTML;
+				  tdMax = i;console.log(td[i].innerHTML)
+				}
+			  }
+			  td[tdMax].style.background = '#ff0000';
+			}
+
+		</script>
+	</body>
+</html>

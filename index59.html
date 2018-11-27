@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			.red{
+			  color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="">Первая ссылка</a>
+		<a href="">Вторая ссылка</a>
+		<a href="">Третья ссылка</a>
+		<p></p>
+		<script>
+
+			let a = document.querySelectorAll('a');
+			for(let i = 0; i < a.length; i++){
+			  a[i].addEventListener('click', show);
+			}
+			function show(event){
+			  event.preventDefault();
+			  let p = document.querySelector('p');
+			  for(let i = 0; i < a.length; i++){
+			    if(event.target == a[i]){
+				  a[i].classList.add('red');
+				  p.innerHTML = a[i].innerHTML;
+				}else {
+				  a[i].classList.remove('red');
+				}
+			  }
+			}
+			
+			
+
+		</script>
+	</body>
+</html>

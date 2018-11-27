@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			td{
+			  border: 1px solid #000;
+			  padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr><td data-td="one">1</td><td data-td="two">5</td></tr>
+			<tr><td data-td="one">240</td><td data-td="two">170</td></tr>
+			<tr><td data-td="one">22</td><td data-td="two">1</td></tr>
+			<tr><td data-td="one">50</td><td data-td="two">10</td></tr>
+			<tr><td></td><td></td></tr>
+		</table>
+		<br>
+		<button>MAX</button>
+				
+		<script>
+			let rows = document.getElementsByTagName('tr');
+			let button = document.querySelector('button');
+			button.addEventListener('click', sum);
+			
+			function sum(){
+			  var arr = [];
+			  for (var i = 0; i < rows.length-1; i++) {
+			    for(var j = 0; j < rows[i].children.length; j++) {
+			      if (arr[j] == undefined) {
+				    arr[j] = 0;
+			      }
+			      arr[j] += Number(rows[i].children[j].innerHTML);
+		        }
+	          }
+			  for (var k = 0; k < rows[rows.length-1].children.length; k++) {
+				rows[rows.length-1].children[k].innerHTML = arr[k];
+			  }
+			}
+			
+
+		</script>
+	</body>
+</html>

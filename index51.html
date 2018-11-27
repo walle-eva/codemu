@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			td{
+			  border: 1px solid #000;
+			  padding: 10px;
+			}
+			.red{
+			  background: #ff0000;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr><td data-td="one">1</td><td data-td="two">5</td></tr>
+			<tr><td data-td="one">240</td><td data-td="two">170</td></tr>
+			<tr><td data-td="one">22</td><td data-td="two">1</td></tr>
+			<tr><td data-td="one">50</td><td data-td="two">10</td></tr>
+		</table>
+		<p></p>
+		<br>
+		<button>RESET</button>
+				
+		<script>
+			let button = document.querySelector('button');
+			button.addEventListener('click', reset);
+			
+			let table = document.querySelector('table');
+			table.addEventListener('click', sum);
+			
+			let arrTd = [];
+			function sum(event){
+			  if(event.target.closest('td')){
+			    event.target.classList.add('red');
+			    arrTd.push(event.target.innerHTML);
+			  }
+			  let summa = 0;
+			  for (var i = 0; i < arrTd.length; i++) {
+			    summa += +arrTd[i];
+			  }
+			  let p = document.querySelector('p');
+			  p.innerHTML = summa;
+			}
+			
+			function reset(){
+			  arrTd = []; 
+			  document.querySelector('p').innerHTML = '';
+			  let tdRed = document.querySelectorAll('.red');
+			  for(let j = 0; j < tdRed.length; j++){
+			    tdRed[j].classList.remove('red');
+			  }
+			   
+			}
+			
+
+		</script>
+	</body>
+</html>

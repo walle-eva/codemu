@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type="checkbox">
+		<a>Change</a>
+		<script>
+
+			let a = document.querySelector('a');
+			a.addEventListener('click', change);
+						
+			function change(){
+			let input = document.querySelector('input');
+			  if(!input.checked){
+			    input.checked = true;
+			  } else {
+			    input.checked = false;
+			  }
+			}
+
+
+		</script>
+	</body>
+</html>

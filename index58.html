@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			td{
+			  border: 1px solid #000;
+			  padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>10</li>
+			<li>15</li>
+			<li>3</li>
+			<li>2</li>
+		</ul>
+		<button>Push</button>
+		
+		<script>
+
+			let button = document.querySelector('button');
+			button.addEventListener('click', item);
+			
+			function item(){
+			  let ul = document.querySelector('ul');
+			  let li = document.querySelectorAll('li');
+			  let result = [].map.call(li, function(el){
+			    return el.innerHTML
+			  });
+			  result = result.sort(pl);
+			  for(let i = 0; i < result.length; i++){
+				li[i].innerHTML = result[i];
+			  }
+			}
+			
+			function pl(a, b){
+			  return a - b;
+			}
+
+		</script>
+	</body>
+</html>

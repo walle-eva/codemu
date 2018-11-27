@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<input type="text" class="numb">
+	<input type="text" class="numb">
+	<input type="text" class="result">
+	<input type="button" value="Сложить">
+		<script>
+			let button = document.querySelector('input[type="button"]').addEventListener('click', summa);
+			
+			function summa(){
+			  let numb = document.querySelectorAll('.numb');
+			  let numbValue = [].map.call(numb, function(elem){
+				  return elem.value;
+			  });
+			  let result = numbValue.reduce(function(sum, elem){
+				  return +sum + (+elem);
+			  })
+			  document.querySelector('.result').value = result;
+			}
+		</script>
+	</body>
+</html>

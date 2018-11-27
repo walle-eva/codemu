@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<p></p>
+		<a>Следующая строка</a>
+		<script>
+
+			window.addEventListener('load', text);
+			let a = document.querySelector('a');
+			a.addEventListener('click', text)
+			
+			let numb = 0;
+			function text(){
+			  let arr = ['один','два','три']
+			  let p = document.querySelector('p');
+			  p.innerHTML = arr[numb];
+			  numb++;
+			  if(numb > arr.length-1){
+			    numb = 0;
+			  }
+			}	
+
+		</script>
+	</body>
+</html>

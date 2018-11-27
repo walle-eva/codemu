@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+	<p>2</p>
+	<p>3</p>
+	<p>5</p>
+	<input type="button" value="PUSH">
+		<script>
+			document.querySelector('input').addEventListener('click', squer);
+			
+			function squer(){
+			  let data = document.querySelectorAll('p');
+			  for(let i = 0; i < data.length; i++){
+				  data[i].innerHTML *= data[i].innerHTML;
+			  }
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			td{
+			  border: 1px solid #000;
+			  padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr><td>1</td><td>5</td></tr>
+			<tr><td>240</td><td>170</td></tr>
+			<tr><td>22</td><td>1</td></tr>
+			<tr><td>50</td><td>10</td></tr>
+		</table>
+		<br>
+		<button>MAX</button>
+		<br>
+		<input type="text">
+				
+		<script>
+
+			let button = document.querySelector('button');
+			button.addEventListener('click', maxNumb);
+			
+			function maxNumb(){
+			  let td = document.querySelectorAll('td');
+			  let input = document.querySelector('input');
+			  let tdValue = [].map.call(td, function(el){
+			    return el.innerHTML;
+			  })
+			  tdValue = tdValue.sort(sortTd);
+			  input.value = tdValue;
+			}
+			
+			function sortTd(a,b){
+			  return a - b;
+			}
+
+		</script>
+	</body>
+</html>
