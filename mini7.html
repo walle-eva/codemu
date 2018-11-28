@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			#result{
+			  display: flex;
+			  justify-content: space-between;
+			  max-width: 300px;
+			  margin: 0px auto;
+			  border: 1px solid #999;
+			  padding: 0px 10px;
+			  align-items: center;
+			}
+			input[type="text"]{
+			  padding: 5px;
+			  outline: 5px double #999;
+			  display: inline-block;
+			  margin-bottom: 30px;
+			}
+			p{
+			  padding: 5px;
+			}
+			.close{
+			  width: 10px;
+			  height: 5px;
+			  border: 1px solid red;
+			  border-radius: 50%;
+			  display: inline-flex;
+			  color: red;
+			}
+			.close::before{
+			  content: 'X';
+			  margin-top: -6px;
+			  margin-left: -1px;
+			}
+			input[type="checkbox"]{
+			  border: 1px solid #000;
+			  outline: azure;
+			  padding: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<input type="text" value="" placeholder="Введите задачу">
+		
+		<script>
+
+			let input = document.querySelector('input');
+			input.addEventListener('keydown', list);
+
+			function list(event){
+			  if(event.keyCode == 13){
+			    let item = input.value;
+				
+				let result = document.createElement('div');
+				let checkBox = document.createElement('input');
+				let p = document.createElement('p');
+				let cross = document.createElement('p');
+				
+				result.id = 'result';
+				checkBox.type = 'checkbox';
+				checkBox.addEventListener('click', done);
+				p.innerHTML = item;
+				p.addEventListener('dblclick', edit);
+				cross.classList.add('close');
+				cross.addEventListener('click', del);
+				
+				document.body.appendChild(result);
+				result.appendChild(checkBox);
+				result.appendChild(p);
+				result.appendChild(cross);
+				input.value = '';
+			  } 
+			  return false;
+			}
+			
+			function done(event){
+			  if(event.target.checked){
+			    event.target.nextElementSibling.style.textDecoration = 'line-through';
+			  } else {
+			    event.target.nextElementSibling.style.textDecoration = 'none';
+			  }
+			}
+			
+			function edit(event){
+			  let input = document.createElement('input');
+			  input.value = event.target.innerHTML;
+			  event.target.innerHTML = '';
+			  event.target.appendChild(input);
+			  input.addEventListener('blur', save);
+			}
+			
+			function save(event){
+			  console.log(event.target)
+			  event.target.parentElement.innerHTML = event.target.value;
+			}
+			
+			function del(event){
+			  event.target.closest('div').remove();
+			}
+
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

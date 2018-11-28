@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			.red{
+			  color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<ol>
+			<li>Какой язык вы предпочитаете?
+				<ol>
+					<li><label><input type="radio" name="first" value="JavaScript">JavaScript</label></li>
+					<li><label><input type="radio" name="first" value="HTML/CSS">HTML/CSS</label></li>
+					<li><label><input type="radio" name="first" value="PHP">PHP</label></li>
+					<li><label><input type="radio" name="first" value="C++">C++</label></li>
+					<li><label><input type="radio" name="first" value="Русский">Русский</label></li>
+					<li><label>Свой ответ: <input type="text" name="first"></label></li>
+				</ol>	
+			</li>			
+			<li>Какой редактор кода используете?
+				<ol>
+					<li><label><input type="radio" name="second" value="Notepad++">Notepad++</label></li>
+					<li><label><input type="radio" name="second" value="Блокнот">Блокнот</label></li>
+					<li><label><input type="radio" name="second" value="Sublime Text">Sublime Text</label></li>
+					<li><label>Свой ответ: <input type="text" name="second"></label></li>
+				</ol>
+			</li>	
+			<li>Какой у вас опыт?
+				<ol>
+					<li><label><input type="radio" name="thrid" value="6 месяцев">6 месяцев</label></li>
+					<li><label><input type="radio" name="thrid" value="Около года">Около года</label></li>
+					<li><label><input type="radio" name="thrid" value="Пара лет">Пара лет</label></li>
+					<li><label><input type="radio" name="thrid" value="Пол жизни">Пол жизни</label></li>
+					<li><label>Свой ответ: <input type="text" name="thrid"></label></li>
+				</ol>
+			</li>	
+		</ol>
+		<button>Отправить</button>
+		
+		<script>
+
+			let button = document.querySelector('button');
+			button.addEventListener('click', result);
+
+			function result(){
+			  let answer = {};
+			  let input = document.querySelectorAll('input');
+			  let divText = document.querySelectorAll('div');
+			  
+			  for(let i = 0; i < input.length; i++){
+				if(input[i].checked || input[i].type == 'text'){
+				  answer[input[i].name] += ', ' + input[i].value;
+				}  
+			  }
+
+			  for(let key in answer){
+			    if(answer[key]){
+				  answer[key] = answer[key].trim().split(', ').slice(1);
+				}  
+			  }
+			  
+			  let radioBox = document.querySelectorAll('input[type="radio"]')
+			  for(let j = 0; j < radioBox.length; j++){
+			    radioBox[j].style.display = 'none';
+			  }
+			  button.innerHTML = 'Пройти опрос ещё раз';
+			  button.addEventListener('click', repeat);
+			  button.removeEventListener('click', result);
+			  console.log(answer);
+			}
+			
+			function repeat(){
+			  let radioBox = document.querySelectorAll('input[type="radio"]')
+			  for(let j = 0; j < radioBox.length; j++){
+			    radioBox[j].checked = false;
+				radioBox[j].style.display = 'inline-block';
+			  }
+			  button.innerHTML = 'Отправить';
+			  button.addEventListener('click', result);
+			  button.removeEventListener('click', repeat);
+			}
+
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
