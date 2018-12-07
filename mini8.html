@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			input{
+			  display: block;
+			  margin: 50px auto;
+			}
+			table{
+			  display: inline-block;
+			}
+			td{
+			  padding: 10px;
+			  border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="start">
+		<table>
+			
+		</table>
+		
+		
+		<script>
+			let table = document.querySelector('table');
+			let count;
+			let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+			let arr2 = arr.sort(rand);
+			let arr3;
+			let input = document.querySelector('input');
+			input.addEventListener('click', game);
+			
+			
+			function game(event){
+			  table.innerHTML = '';
+			  if(document.querySelector('p')){
+			  document.querySelector('p').remove()
+			  };
+			  count = 75;
+			  arr3 = [0];
+			  for(let i = 0; i < 5; i++){
+			    let tr = document.createElement('tr');
+				table.appendChild(tr);
+				for(let j = 0; j < 5; j++){
+				  let td = document.createElement('td');
+				  td.addEventListener('click', gameArr);
+				  tr.appendChild(td);
+				}
+			  }
+			  		  
+			  let td = document.querySelectorAll('td');
+			  for(let i = 0; i < td.length; i++){
+			    td[i].innerHTML = arr2[i];
+				td[i].style = getRandomStyle();
+			  }
+			  let p = document.createElement('p');
+			  p.innerHTML = 'Время осталось: ' + count;
+			  document.body.insertBefore(p, table);
+			  timerId = setInterval(countmin, 1000);
+			}
+			
+			function rand(a,b){
+			   return Math.random() - 0.5;
+			}
+			
+			function getRandomStyle() {
+			  return 'font-size:' + randomInterval(14, 40) + 'px;'
+				+ 'color:' + getRandomColor();
+			}
+			
+			function randomInterval(a,b){
+			  return Math.floor(Math.random() * (b - a)) + a;
+			}	
+
+			function getRandomColor(){
+			  return 'rgb(' + randomInterval(0, 255) + ',' + 
+			     randomInterval(0, 255) + ',' + randomInterval(0, 255) + ')';
+			}	
+
+			function countmin(){
+			  count = count - 1;
+			  document.querySelector('p').innerHTML = 'Время осталось: ' + count;
+			  if(count <= 0){
+			    document.querySelector('p').innerHTML = 'Вы проиграли';
+				input.value = 'Начать заново';
+				input.addEventListener('click', game);
+				clearInterval(timerId);
+			  }
+			  if(arr3.length == 26){
+			    document.querySelector('p').innerHTML = 'Вы выиграли';
+				input.value = 'Начать заново';
+			  }
+			  return count;
+			}
+			
+			function gameArr(event){
+			  if(+event.target.innerHTML == arr3[arr3.length-1] + 1 && count > 0){
+			  arr3.push(+event.target.innerHTML);
+			  event.target.style.background = 'blue';
+			  } 
+			}
+			 
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

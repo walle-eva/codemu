@@ -6,104 +6,59 @@
 			  margin: 50px auto;
 			  text-align: center;
 			}
-			#result{
-			  display: flex;
-			  justify-content: space-between;
-			  max-width: 300px;
-			  margin: 0px auto;
-			  border: 1px solid #999;
-			  padding: 0px 10px;
-			  align-items: center;
-			}
 			input[type="text"]{
 			  padding: 5px;
 			  outline: 5px double #999;
 			  display: inline-block;
 			  margin-bottom: 30px;
 			}
-			p{
-			  padding: 5px;
+			div{
+			  text-align:left;
+			  width: 183px;
+			  margin: auto
 			}
-			.close{
-			  width: 10px;
-			  height: 5px;
-			  border: 1px solid red;
-			  border-radius: 50%;
-			  display: inline-flex;
-			  color: red;
-			}
-			.close::before{
-			  content: 'X';
-			  margin-top: -6px;
-			  margin-left: -1px;
-			}
-			input[type="checkbox"]{
-			  border: 1px solid #000;
-			  outline: azure;
-			  padding: 5px;
+			div p{
+			  margin:2px 0;
 			}
 		</style>
 	</head>
 	<body>
 		
-		<input type="text" value="" placeholder="Введите задачу">
+		<input type="text" value="" placeholder="Введите страну">
+		<div>
+		  
+		</div>
 		
 		<script>
 
-			let input = document.querySelector('input');
-			input.addEventListener('keydown', list);
-
-			function list(event){
-			  if(event.keyCode == 13){
-			    let item = input.value;
-				
-				let result = document.createElement('div');
-				let checkBox = document.createElement('input');
-				let p = document.createElement('p');
-				let cross = document.createElement('p');
-				
-				result.id = 'result';
-				checkBox.type = 'checkbox';
-				checkBox.addEventListener('click', done);
-				p.innerHTML = item;
-				p.addEventListener('dblclick', edit);
-				cross.classList.add('close');
-				cross.addEventListener('click', del);
-				
-				document.body.appendChild(result);
-				result.appendChild(checkBox);
-				result.appendChild(p);
-				result.appendChild(cross);
-				input.value = '';
-			  } 
-			  return false;
-			}
+			const countries = ["Австралия", "Австрия", "Азербайджан", "Албания", "Алжир", "Ангола", "Андорра", "Антигуа и Барбуда", "Антильские острова", "Аргентина", "Армения", "Афганистан", "Багамские острова", "Бангладеш", "Барбадос", "Бахрейн", "Белиз", "Белоруссия", "Бельгия", "Бенин", "Болгария", "Боливия", "Босния и Герцеговина", "Ботсвана", "Бразилия", "Буркина-Фасо", "Бурунди", "Бутан", "Вануату", "Ватикан", "Великобритания", "Венгрия", "Венесуэла", "Вьетнам", "Габон", "Гаити", "Гайана", "Гамбия", "Гана", "Гватемала", "Гвинея", "Гвинея-Бисау", "Германия", "Голландия", "Гондурас", "Гонконг", "Гренада", "Гренландия", "Греция", "Грузия", "Гуам", "Дания", "Демократическая Республика Конго", "Джибути", "Доминиканская республика", "Египет", "Замбия", "Западная Сахара", "Зимбабве", "Израиль", "Индия", "Индонезия", "Иордания", "Ирак", "Иран", "Ирландия", "Исландия", "Испания", "Италия", "Йемен", "Кабо-Верде", "Казахстан", "Камбоджа", "Камерун", "Канада", "Катар", "Кения", "Кипр", "Киргизия", "Кирибати", "Китай", "КНДР", "Колумбия", "Коморские острова", "Коста-Рика", "Кот-д'Ивуар", "Куба", "Кувейт", "Лаос", "Латвия", "Лесото", "Либерия", "Ливан", "Ливия", "Литва", "Лихтенштейн", "Люксембург", "Маврикий", "Мавритания", "Мадагаскар", "Македония", "Малави", "Малайзия", "Мали", "Мальдивы", "Мальта", "Марокко", "Мартиника", "Мексика", "Микронезия", "Мозамбик", "Молдавия", "Монако", "Монголия", "Мьянма", "Намибия", "Непал", "Нигер", "Нигерия", "Никарагуа", "Новая Зеландия", "Новая Каледония", "Норвегия", "ОАЭ", "Оман", "Пакистан", "Палестина", "Панама", "Папуа-Новая Гвинея", "Парагвай", "Перу", "Польша", "Португалия", "Пуэрто-Рико", "Республика Конго", "Республика Корея", "Россия", "Руанда", "Румыния", "Сальвадор", "Сан-Марино", "Сан-Томе и Принсипи", "Саудовская Аравия", "Свазиленд", "Сенегал", "Сент-Китс и Невис", "Сент-Люсия", "Сербия", "Сингапур", "Сирия", "Словакия", "Словения", "Соломоновы острова", "Сомали", "Судан", "Суринам", "США", "Сьерра-Леоне", "Таджикистан", "Таиланд", "Тайвань", "Танзания", "Того", "Тонга", "Тринидад и Тобаго", "Тунис", "Туркменистан", "Турция", "Уганда", "Узбекистан", "Украина", "Уругвай", "Фиджи", "Филиппины", "Финляндия", "Франция", "Французская Гвиана", "Хорватия", "Центральноафриканская Республика", "Чад", "Черногория", "Чехия", "Чили", "Швейцария", "Швеция", "Шри-Ланка", "Эквадор", "Экваториальная Гвинея", "Эритрея", "Эстония", "Эфиопия", "ЮАР", "Ямайка", "Япония"];
 			
-			function done(event){
-			  if(event.target.checked){
-			    event.target.nextElementSibling.style.textDecoration = 'line-through';
-			  } else {
-			    event.target.nextElementSibling.style.textDecoration = 'none';
+			let input = document.querySelector('input');
+			input.addEventListener('keyup', filtrCountri);
+			
+			function filtrCountri(){
+			  let countriSuppose = input.value;
+			  let countriRest = [];
+			  countries.map(function(el){
+			    if(el.includes(countriSuppose)){
+				  return countriRest.push(el);
+				}
+			  })
+			  let div = document.querySelector('div');
+			  div.innerHTML = '';
+			  for(let i = 0; i < countriRest.length; i++){
+			    let p = document.createElement('p');
+				p.innerHTML = countriRest[i];
+				p.addEventListener('click', shoose);
+				div.appendChild(p);
+			  }
+			  
+			  function shoose(){
+			    input.value = this.innerHTML;
+				div.innerHTML = '';
 			  }
 			}
-			
-			function edit(event){
-			  let input = document.createElement('input');
-			  input.value = event.target.innerHTML;
-			  event.target.innerHTML = '';
-			  event.target.appendChild(input);
-			  input.addEventListener('blur', save);
-			}
-			
-			function save(event){
-			  console.log(event.target)
-			  event.target.parentElement.innerHTML = event.target.value;
-			}
-			
-			function del(event){
-			  event.target.closest('div').remove();
-			}
-
+			 
 		</script>
 	</body>
 </html>
