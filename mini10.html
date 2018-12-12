@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			.text{
+			  width: 300px;
+			  height: 200px;
+			  overflow-y: auto;
+			  position: relative;
+			}
+			.popup{
+			  width: 100px;
+			  height: 50px;
+			  border: 1px solid #000;
+			  border-radius: 5px;
+			  position: fixed;
+			  background: #fff;
+			  left: calc(50% - 50px);
+			  top: calc(50% - 25px);
+			  display: none;
+			}
+			span{
+			 position: absolute;
+			 top: 0px;
+			 right: 5px;
+			 cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+			<div class="text">
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+				<p>Текст текст текст текст текст</p>
+			
+				<div class="popup">
+					<p>Привет!</p>
+					<span>x</span>
+				</div>
+			</div>
+			
+		
+		<script>
+			let div = document.querySelector('.text');
+			let closeButton = document.querySelector('span');
+			closeButton.addEventListener('click', close);
+			
+			function popup(event){
+			  let scroll = div.scrollTop;
+			    document.querySelector('.popup').style.display = 'block';
+			}
+			
+			function close(){
+			  document.querySelector('.popup').style.display = 'none';
+			}
+			
+			setTimeout(popup, 2000);
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

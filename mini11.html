@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			table{
+			  display: inline-block;
+			}
+			td{
+			  border: 1px solid #000;
+			  padding: 5px;
+			  min-width: 20px;
+			}
+			.now{
+			  background: #000;
+			  color: #fff;
+			  font-weight: bold;
+			}
+			.nav{
+			  margin: 30px;
+			}
+			.nav span{
+			  display: inline-block;
+			  margin: 0 20px;
+			  padding: 5px 10px;
+			  border: 1px solid #999;
+			  background: #eee;
+			  cursor: pointer;
+			}
+			.date{
+			  margin: 10px;
+			}
+			.date span{
+			  display: inline-block;
+			  margin: 0 20px;
+			}
+		</style>
+	</head>
+	<body>
+	
+		<div class="nav">	
+			<span class="prev">Предыдущий месяц</span><span class="next">Следующий месяц</span>
+		</div>
+		<div class="date">
+			<span class="year"></span><span class="month"></span>
+		</div>
+		<table>
+			<tr>
+			</tr>
+		</table>
+		
+		<script>
+			let tr = document.querySelector('tr');
+			window.addEventListener('load', calendar);
+			let month = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+
+			let prev = document.querySelector('.prev');
+			prev.addEventListener('click', calendarPrev);
+			
+			let next = document.querySelector('.next');
+			next.addEventListener('click', calendarNext);
+			
+			
+			let date = new Date();
+			let dayNow = date.getDate();
+			let monthNow = date.getMonth();
+			let yearNow = date.getFullYear();
+			
+			function calendar(){
+			   
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  
+			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  
+			  for(let i = 1; i <= dayAll; i++){
+			    let td = document.createElement('td');
+				td.innerHTML = i;
+				tr.appendChild(td);
+				if(i == dayNow){
+				  td.classList.add('now');
+				}
+			  }
+			}
+			
+			function calendarPrev(){
+			  tr.innerHTML = '';
+			  
+			  
+			  monthNow = monthNow - 1;
+			  
+			  if(monthNow < 0){
+			    monthNow = 11;
+				yearNow = yearNow - 1;
+			  }
+			  
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  			  
+			  for(let i = 1; i <= dayAll; i++){
+			    let td = document.createElement('td');
+				td.innerHTML = i;
+				tr.appendChild(td);
+				if(i == dayNow && monthNow == date.getMonth()){
+				  td.classList.add('now');
+				}
+			  }
+			}
+			
+			function calendarNext(){
+			  tr.innerHTML = '';
+			  
+			  
+			  monthNow = monthNow + 1;
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			 
+			  if(monthNow > 11){
+			    monthNow = 0;
+				yearNow = yearNow + 1;
+			  }
+ 			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  
+			
+
+			  
+			  for(let i = 1; i <= dayAll; i++){
+			    let td = document.createElement('td');
+				td.innerHTML = i;
+				tr.appendChild(td);
+				if(i == dayNow && monthNow == date.getMonth()){
+				  td.classList.add('now');
+				}
+			  }
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
