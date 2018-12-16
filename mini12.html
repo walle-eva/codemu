@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			table{
+			  margin: auto;
+			  border-collapse: collapse;
+			  width: 100%;
+			}
+			td{
+			  padding: 5px;
+			  min-width: 20px;
+			}
+			.now{
+			  background: #000;
+			  color: #fff;
+			  font-weight: bold;
+			}
+			.nav{
+			  margin: 10px;
+			  float: right;
+			}
+			.nav span{
+			  display: inline-block;
+			  margin: 0 5px;
+			  cursor: pointer;
+			}
+			.date{
+			  margin: 10px;
+			  float: left;
+			}
+			.date span{
+			  display: inline-block;
+			  margin: 0 10px;
+			}
+			.wrapper{
+			  display: inline-block;
+			  width: 100%;
+			}
+			.wrapper:after{
+			  clear: both;
+			  content: '';
+			  display: block;
+			}
+			.container{
+			  display: inline-block;
+			  border: 1px solid #000;
+			  width: 240px;
+			}
+			th{
+			  font-weight: normal;
+			  background: #ccc;
+			  padding: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="wrapper">
+				<div class="date">
+					<span class="year"></span><span class="month"></span>
+				</div>
+				<div class="nav">	
+					<span class="prev">&larr;</span><span class="next">&rarr;</span>
+				</div>
+			</div>	
+			<table>
+				<thead>
+				<tr>
+					<th>Пн</th>
+					<th>Вт</th>
+					<th>Ср</th>
+					<th>Чт</th>
+					<th>Пт</th>
+					<th>Сб</th>
+					<th>Вс</th>
+				</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		<script>
+			let table = document.querySelector('table');
+			window.addEventListener('load', calendar);
+			let month = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+
+			let prev = document.querySelector('.prev');
+			prev.addEventListener('click', calendarPrev);
+			
+			let next = document.querySelector('.next');
+			next.addEventListener('click', calendarNext);
+			
+			
+			let date = new Date();
+			let dayNow = date.getDate();
+			let monthNow = date.getMonth();
+			let yearNow = date.getFullYear();
+			
+			function calendar(){
+			   
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  let dayFirst = (new Date(yearNow, monthNow, 1)).getDay();
+			  let week = Math.ceil((dayAll + dayFirst)/7);
+			  if((dayAll + dayFirst)/7 < 5.2){
+			    week = 5;
+			  }
+			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  
+			  let k = 1;
+			  
+			  for(let i = 0; i < week; i++){
+			    let tr = document.createElement('tr');
+				document.querySelector('tbody').appendChild(tr);
+				for(let j = 0; j < 7; j++){
+				  let td = document.createElement('td');
+				  td.innerHTML = k;
+				  if(k == dayNow){
+				    td.classList.add('now');
+				  }
+				  if(j < dayFirst-1 && i == 0){
+				    td.innerHTML = '';
+					k = 0;
+				  }
+				  if(k > dayAll){
+				    td.innerHTML = '';
+				  }
+				  k++;
+				  tr.appendChild(td);
+				}
+			  }
+			}
+			
+			function calendarPrev(){
+			  document.querySelector('tbody').innerHTML = '';
+			  
+			  monthNow = monthNow - 1;
+			  
+			  if(monthNow < 0){
+			    monthNow = 11;
+				yearNow = yearNow - 1;
+			  }
+			  
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  let dayFirst = (new Date(yearNow, monthNow, 1)).getDay();
+			  if(dayFirst == 0){
+			    dayFirst = 7;
+			  }
+			  
+			  let week = Math.ceil((dayAll + dayFirst)/7);
+			  if((dayAll + dayFirst)/7 < 5.2){
+			    week = 5;
+			  }
+			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  			  
+			  
+			  let k = 1;
+			  
+			  for(let i = 0; i < week; i++){
+			    let tr = document.createElement('tr');
+				document.querySelector('tbody').appendChild(tr);
+				for(let j = 0; j < 7; j++){
+				  let td = document.createElement('td');
+				  td.innerHTML = k;
+				  
+				  if(j < dayFirst-1 && i == 0){
+				    td.innerHTML = '';
+					k = 0;
+				  }
+				  if(k > dayAll){
+				    td.innerHTML = '';
+				  }
+				  if(monthNow == (new Date()).getMonth() && k == (new Date()).getDate()){
+				    td.classList.add('now');
+				  }
+				  k++;
+				  tr.appendChild(td);
+				}
+			  }
+			  
+			}
+			
+			function calendarNext(){
+			  document.querySelector('tbody').innerHTML = '';
+			  
+			  
+			  monthNow = monthNow + 1;
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  let dayFirst = (new Date(yearNow, monthNow, 1)).getDay();
+			  if(dayFirst == 0){
+			    dayFirst = 7;
+			  }
+			  
+			  let week = Math.ceil((dayAll + dayFirst)/7);
+			  if((dayAll + dayFirst)/7 < 5.2){
+			    week = 5;
+			  }
+			  if(monthNow > 11){
+			    monthNow = 0;
+				yearNow = yearNow + 1;
+			  }
+ 			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  
+			  let k = 1;
+			  
+			  for(let i = 0; i < week; i++){
+			    let tr = document.createElement('tr');
+				document.querySelector('tbody').appendChild(tr);
+				for(let j = 0; j < 7; j++){
+				  let td = document.createElement('td');
+				  td.innerHTML = k;
+				  
+				  if(j < dayFirst-1 && i == 0){
+				    td.innerHTML = '';
+					k = 0;
+				  }
+				  if(k > dayAll){
+				    td.innerHTML = '';
+				  }
+				  if(monthNow == (new Date()).getMonth() && k == (new Date()).getDate()){
+				    td.classList.add('now');
+				  }
+				  k++;
+				  tr.appendChild(td);
+				}
+			  }
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
