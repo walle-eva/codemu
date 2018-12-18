@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			table{
+			  margin: auto;
+			  border-collapse: collapse;
+			  width: 100%;
+			}
+			td{
+			  padding: 5px;
+			  min-width: 20px;
+			}
+			.now{
+			  background: #000;
+			  color: #fff;
+			  font-weight: bold;
+			}
+			.nav{
+			  margin: 10px;
+			  float: right;
+			}
+			.nav span{
+			  display: inline-block;
+			  margin: 0 5px;
+			  cursor: pointer;
+			}
+			.date{
+			  margin: 10px;
+			  float: left;
+			}
+			.date span{
+			  display: inline-block;
+			  margin: 0 10px;
+			}
+			.wrapper{
+			  display: inline-block;
+			  width: 100%;
+			}
+			.wrapper:after{
+			  clear: both;
+			  content: '';
+			  display: block;
+			}
+			.container{
+			  display: inline-block;
+			  border: 1px solid #000;
+			  width: 240px;
+			}
+			th{
+			  font-weight: normal;
+			  background: #ccc;
+			  padding: 5px;
+			}
+			.work{
+			  margin-top: 50px;
+			}
+			.task{
+			  border: 1px solid #999;
+			}
+			.hidden{
+			  display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="wrapper">
+				<div class="date">
+					<span class="year"></span><span class="month"></span>
+				</div>
+				<div class="nav">	
+					<span class="prev">&larr;</span><span class="next">&rarr;</span>
+				</div>
+			</div>	
+			<table>
+				<thead>
+				<tr>
+					<th>Пн</th>
+					<th>Вт</th>
+					<th>Ср</th>
+					<th>Чт</th>
+					<th>Пт</th>
+					<th>Сб</th>
+					<th>Вс</th>
+				</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		<div class="work">
+		</div>
+		<script>
+			let table = document.querySelector('table');
+			window.addEventListener('load', calendar);
+			let month = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+
+			let prev = document.querySelector('.prev');
+			prev.addEventListener('click', calendarPrev);
+			
+			let next = document.querySelector('.next');
+			next.addEventListener('click', calendarNext);
+			
+			
+			let date = new Date();
+			let dayNow = date.getDate();
+			let monthNow = date.getMonth();
+			let yearNow = date.getFullYear();
+			
+			function calendar(){
+			   
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  let dayFirst = (new Date(yearNow, monthNow, 1)).getDay();
+			  let week = Math.ceil((dayAll + dayFirst)/7);
+			  if((dayAll + dayFirst)/7 < 5.2){
+			    week = 5;
+			  }
+			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  
+			  let k = 1;
+			  
+			  for(let i = 0; i < week; i++){
+			    let tr = document.createElement('tr');
+				document.querySelector('tbody').appendChild(tr);
+				for(let j = 0; j < 7; j++){
+				  let td = document.createElement('td');
+				  td.innerHTML = k;
+				  td.addEventListener('click', work);
+				  if(k == dayNow){
+				    td.classList.add('now');
+				  }
+				  if(j < dayFirst-1 && i == 0){
+				    td.innerHTML = '';
+					k = 0;
+				  }
+				  if(k > dayAll){
+				    td.innerHTML = '';
+				  }
+				  k++;
+				  tr.appendChild(td);
+				}
+			  }
+			}
+			
+			function calendarPrev(){
+			  document.querySelector('tbody').innerHTML = '';
+			  
+			  monthNow = monthNow - 1;
+			  
+			  if(monthNow < 0){
+			    monthNow = 11;
+				yearNow = yearNow - 1;
+			  }
+			  
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  let dayFirst = (new Date(yearNow, monthNow, 1)).getDay();
+			  if(dayFirst == 0){
+			    dayFirst = 7;
+			  }
+			  
+			  let week = Math.ceil((dayAll + dayFirst)/7);
+			  if((dayAll + dayFirst)/7 < 5.2){
+			    week = 5;
+			  }
+			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  			  
+			  
+			  let k = 1;
+			  
+			  for(let i = 0; i < week; i++){
+			    let tr = document.createElement('tr');
+				document.querySelector('tbody').appendChild(tr);
+				for(let j = 0; j < 7; j++){
+				  let td = document.createElement('td');
+				  td.innerHTML = k;
+				  td.addEventListener('click', work);
+				  if(j < dayFirst-1 && i == 0){
+				    td.innerHTML = '';
+					k = 0;
+				  }
+				  if(k > dayAll){
+				    td.innerHTML = '';
+				  }
+				  if(monthNow == (new Date()).getMonth() && k == (new Date()).getDate()){
+				    td.classList.add('now');
+				  }
+				  k++;
+				  tr.appendChild(td);
+				}
+			  }
+			  
+			}
+			
+			function calendarNext(){
+			  document.querySelector('tbody').innerHTML = '';
+			  
+			  
+			  monthNow = monthNow + 1;
+			  let dayEnd = new Date(yearNow, monthNow + 1, 0);
+			  let dayAll = dayEnd.getDate();
+			  let dayFirst = (new Date(yearNow, monthNow, 1)).getDay();
+			  if(dayFirst == 0){
+			    dayFirst = 7;
+			  }
+			  
+			  let week = Math.ceil((dayAll + dayFirst)/7);
+			  if((dayAll + dayFirst)/7 < 5.2){
+			    week = 5;
+			  }
+			  if(monthNow > 11){
+			    monthNow = 0;
+				yearNow = yearNow + 1;
+			  }
+ 			  document.querySelector('.year').innerHTML = yearNow;
+			  document.querySelector('.month').innerHTML = month[monthNow];
+			  
+			  let k = 1;
+			  
+			  for(let i = 0; i < week; i++){
+			    let tr = document.createElement('tr');
+				document.querySelector('tbody').appendChild(tr);
+				for(let j = 0; j < 7; j++){
+				  let td = document.createElement('td');
+				  td.innerHTML = k;
+				  td.addEventListener('click', work);
+				  if(j < dayFirst-1 && i == 0){
+				    td.innerHTML = '';
+					k = 0;
+				  }
+				  if(k > dayAll){
+				    td.innerHTML = '';
+				  }
+				  if(monthNow == (new Date()).getMonth() && k == (new Date()).getDate()){
+				    td.classList.add('now');
+				  }
+				  k++;
+				  tr.appendChild(td);
+				}
+			  }
+			}
+			
+			let tasks = document.querySelector('.work');
+			
+			function work(event){
+			  let task = document.createElement('input');
+			  task.placeholder = 'Введите задачу';
+			  visibl.bind(this)();
+			  task.addEventListener('keydown', save.bind(this));
+			  tasks.appendChild(task);task.focus();
+			  task.addEventListener('blur', remove); 
+			}
+			
+			function visibl(event){
+			  let pAll = document.querySelectorAll('p');
+			  let time = document.querySelector('.year').innerHTML + document.querySelector('.month').innerHTML + this.innerHTML;
+			  for(let i = 0; i < pAll.length; i++){
+				if(pAll[i].getAttribute('data-time') != time){
+				 // pAll[i].style.display = 'none';
+				 pAll[i].classList.add('hidden');
+				 pAll[i].classList.remove('vis');
+				} else {
+				 // pAll[i].style.display = 'block';
+				 pAll[i].classList.remove('hidden');
+				 pAll[i].classList.add('vis');
+				}
+			  }
+			}
+			
+			function save(event){
+			  let time = document.querySelector('.year').innerHTML + document.querySelector('.month').innerHTML + this.innerHTML;
+			  let task = event.target.value;
+			  let p = document.createElement('p');
+			  if(event.keyCode == 13){
+				p.innerHTML = task;
+				p.setAttribute('data-time', time);
+				p.addEventListener('dblclick', change);
+				tasks.appendChild(p);
+				this.classList.add('task');
+				let close = document.createElement('span');
+				close.innerHTML = 'x';
+				close.addEventListener('click', del.bind(this));
+				p.appendChild(close);
+			  } 			  
+			}
+			
+			function remove(event){
+			  event.target.remove();
+			}
+			
+			function change(event){
+			  let task = event.target.innerHTML;
+			  let input = document.createElement('input');
+			  event.target.innerHTML = ''; 
+			  input.value = task;
+			  input.addEventListener('keydown', save);
+			  event.target.appendChild(input);
+			}
+			
+			function del(event){
+			  event.target.parentElement.remove();
+			  let task = document.querySelectorAll('.vis');
+			  if(task.length == 0){
+			    this.classList.remove('task');
+			  }
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
