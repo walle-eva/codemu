@@ -56,14 +56,28 @@
 			  background: #ccc;
 			  padding: 5px;
 			}
+			.hidden{
+			  display: none;
+			}
 			.work{
-			  margin-top: 50px;
+			  margin: 50px auto;
+			}
+			.work > div{
+			  max-width: 500px;
+			  border: 1px solid #999;
+			  margin: 10px auto;
+			  padding: 10px 20px;
+			  dis play: flex;
+			  justify-content: space-between;
+			}
+			.work > div > p{
+			  margin: 0;
 			}
 			.task{
 			  border: 1px solid #999;
 			}
-			.hidden{
-			  display: none;
+			.vis{
+			  display: flex;
 			}
 		</style>
 	</head>
@@ -133,6 +147,7 @@
 				  let td = document.createElement('td');
 				  td.innerHTML = k;
 				  td.addEventListener('click', work);
+				  //td.addEventListener('click', visibl);
 				  if(k == dayNow){
 				    td.classList.add('now');
 				  }
@@ -183,6 +198,7 @@
 				  let td = document.createElement('td');
 				  td.innerHTML = k;
 				  td.addEventListener('click', work);
+				  td.addEventListener('click', visibl);
 				  if(j < dayFirst-1 && i == 0){
 				    td.innerHTML = '';
 					k = 0;
@@ -232,6 +248,7 @@
 				  let td = document.createElement('td');
 				  td.innerHTML = k;
 				  td.addEventListener('click', work);
+				  td.addEventListener('click', visibl);
 				  if(j < dayFirst-1 && i == 0){
 				    td.innerHTML = '';
 					k = 0;
@@ -253,43 +270,45 @@
 			function work(event){
 			  let task = document.createElement('input');
 			  task.placeholder = 'Введите задачу';
-			  visibl.bind(this)();
 			  task.addEventListener('keydown', save.bind(this));
-			  tasks.appendChild(task);task.focus();
+			  tasks.appendChild(task);
+			  task.focus();
+			  visibl.bind(this)();
 			  task.addEventListener('blur', remove); 
-			}
-			
-			function visibl(event){
-			  let pAll = document.querySelectorAll('p');
-			  let time = document.querySelector('.year').innerHTML + document.querySelector('.month').innerHTML + this.innerHTML;
-			  for(let i = 0; i < pAll.length; i++){
-				if(pAll[i].getAttribute('data-time') != time){
-				 // pAll[i].style.display = 'none';
-				 pAll[i].classList.add('hidden');
-				 pAll[i].classList.remove('vis');
-				} else {
-				 // pAll[i].style.display = 'block';
-				 pAll[i].classList.remove('hidden');
-				 pAll[i].classList.add('vis');
-				}
-			  }
 			}
 			
 			function save(event){
 			  let time = document.querySelector('.year').innerHTML + document.querySelector('.month').innerHTML + this.innerHTML;
 			  let task = event.target.value;
+			  let divTask = document.createElement('div');
 			  let p = document.createElement('p');
 			  if(event.keyCode == 13){
 				p.innerHTML = task;
-				p.setAttribute('data-time', time);
+				divTask.setAttribute('data-time', time);
+				divTask.classList.add('vis');
 				p.addEventListener('dblclick', change);
-				tasks.appendChild(p);
+				tasks.appendChild(divTask);
+				divTask.appendChild(p);
 				this.classList.add('task');
 				let close = document.createElement('span');
 				close.innerHTML = 'x';
 				close.addEventListener('click', del.bind(this));
-				p.appendChild(close);
+				divTask.appendChild(close);
 			  } 			  
+			}
+			
+			function visibl(event){
+			  let pAll = document.querySelectorAll('.work > div');
+			  let time = document.querySelector('.year').innerHTML + document.querySelector('.month').innerHTML + this.innerHTML;
+			  for(let i = 0; i < pAll.length; i++){
+				if(pAll[i].getAttribute('data-time') == time){
+				 pAll[i].classList.remove('hidden');
+				 pAll[i].classList.add('vis');
+				} else {
+				 pAll[i].classList.remove('vis');
+				 pAll[i].classList.add('hidden');
+				}
+			  }
 			}
 			
 			function remove(event){
