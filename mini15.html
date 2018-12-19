@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			.wrapper{
+			  max-width: 400px;
+			  margin: auto;
+			  padding: 10px;
+			}
+			.menu{
+			  background: #eee;
+			  padding: 10px 10px;
+			  border: 1px solid #999;
+			  border-radius: 5px;
+			  margin: 5px;
+			  cursor: pointer;
+			}
+			.hidden{
+			  height: 0;
+			  overflow: hidden;
+			  transition: height .5s linear;
+			  -moz-transition: height .5s linear;
+			  -webkit-transition: height .5s linear;
+			  -o-transition: height .5s linear;
+			}
+		</style>
+	</head>
+	<body><div class="test"></div>
+		<div class="container">
+			<div class="wrapper">				
+				<div class="menu">JavaScript</div>
+				<div class="JavaScript text hidden">			
+					<p>JavaScript — прототипно-ориентированный сценарный язык программирования. Является реализацией языка ECMAScript.
+					</p>
+					<p>JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений. Наиболее широкое применение находит в браузерах как язык сценариев для придания интерактивности веб-страницам.
+					</p>
+				</div>
+				
+				<div class="menu">Jquery</div>
+				<div class="Jquery hidden text">
+					<p>jQuery — библиотека JavaScript, фокусирующаяся на взаимодействии JavaScript и HTML. Библиотека jQuery помогает легко получать доступ к любому элементу DOM, обращаться к атрибутам и содержимому элементов DOM, манипулировать ими. Также библиотека jQuery предоставляет удобный API для работы с AJAX. Сейчас разработка jQuery ведётся командой jQuery во главе с Джоном Резигом.
+					</p>
+				</div>
+				
+				<div class="menu">DOM</div>
+				<div class="DOM hidden text">
+					<p>DOM — это не зависящий от платформы и языка программный интерфейс, позволяющий программам и скриптам получить доступ к содержимому HTML-, XHTML- и XML-документов, а также изменять содержимое, структуру и оформление таких документов. 
+					</p>
+				</div>
+				
+				<div class="menu">CSS</div>
+				<div class="CSS hidden text">
+					<p>CSS — формальный язык описания внешнего вида документа, написанного с использованием языка разметки. 
+					</p>
+				</div>
+			</div>	
+		</div>
+		<script>
+			let menu = document.querySelectorAll('.menu');
+			for(let i = 0; i < menu.length; i++){
+			  menu[i].addEventListener('click', slide);
+			}
+			
+			function slide(event){
+			  let div = document.querySelectorAll('.text');
+			  for(let i = 0; i < div.length; i++){
+			    if(div[i] != this.nextElementSibling){
+				  div[i].style.height = 0;
+				  div[i].classList.remove('hidden1');
+				}  
+			  }
+			  this.nextElementSibling.style.height = this.nextElementSibling.scrollHeight + 'px';
+			  if(this.nextElementSibling.classList.contains('hidden1')){
+			    this.nextElementSibling.style.height = 0;
+			  }
+			  this.nextElementSibling.classList.toggle('hidden1');
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
