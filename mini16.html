@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body{
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			table{
+			  margin: auto;
+			}
+			th{
+			  cursor: pointer;
+			}
+			th, td{
+			  border: 1px solid #999;
+			  padding: 10px;
+			}
+			.sort-small:after{
+			  content: '\2191';
+			  padding-left: 5px;
+			  display: inline-block;
+			}
+			.sort-big:after{
+			  content: '\2193';
+			  padding-left: 5px;
+			  display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr>
+					<th data-col="№" class="sort-small">№</th>
+					<th data-col="Фамилия">Фамилия</th>
+					<th data-col="Имя">Имя</th>
+					<th data-col="Возраст">Возраст</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td data-col="№">1</td>
+					<td data-col="Фамилия">Иванов</td>
+					<td data-col="Имя">Иван</td>
+					<td data-col="Возраст">22</td>
+				</tr>
+				<tr>
+					<td data-col="№">2</td>
+					<td data-col="Фамилия">Петров</td>
+					<td data-col="Имя">Пётр</td>
+					<td data-col="Возраст">29</td>
+				</tr>
+				<tr>
+					<td data-col="№">3</td>
+					<td data-col="Фамилия">Николаев</td>
+					<td data-col="Имя">Николай</td>
+					<td data-col="Возраст">17</td>
+				</tr>
+			</tbody>
+		</table>
+	
+		<script>
+			let th = document.querySelector('thead');
+			th.addEventListener('click', sortList);
+			
+			function sortList(event){
+			  if(event.target.tagName == 'TH'){
+			    let tr = document.querySelectorAll('tbody > tr >td')
+				let td = {};
+				let key = document.querySelectorAll('th')
+				key = [].map.call(key,function(el){
+				  return el.innerHTML;
+				})
+
+				for(let i = 0; i < key.length; i++){
+				  td[key[i]] = []; 
+				}
+				
+				
+				for(key in td){ 
+				  let arr = []; 
+				  for(let j = 0; j < tr.length; j++){
+					if(tr[j].getAttribute('data-col') == key){
+					  arr.push(tr[j].innerHTML);
+					}
+				  }
+				  td[key] = arr;				    
+				}
+
+				//if(event.target.classList.contains('sort-small')){
+				  let test = event.target.getAttribute('data-col');
+				  td[test].sort(sortBig)
+				  console.log(td[test].sort(sortBig.bind(test)))
+				  console.log(td['Фамилия'])
+				//}  
+			  }
+			  return false;
+			}
+			
+			function sortSmall(a,b,test){
+			  return a[test] - b[test];
+			}
+			
+			function sortBig(a,b){
+			  return b - a;
+			}
+			
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
