@@ -32,10 +32,10 @@
 		<table>
 			<thead>
 				<tr>
-					<th data-col="№" class="sort-small">№</th>
-					<th data-col="Фамилия">Фамилия</th>
-					<th data-col="Имя">Имя</th>
-					<th data-col="Возраст">Возраст</th>
+					<th data-col="№" data-num = "0" class="sort-small">№</th>
+					<th data-col="Фамилия" data-num = "1">Фамилия</th>
+					<th data-col="Имя" data-num = "2">Имя</th>
+					<th data-col="Возраст" data-num = "3">Возраст</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,44 +66,97 @@
 			
 			function sortList(event){
 			  if(event.target.tagName == 'TH'){
-			    let tr = document.querySelectorAll('tbody > tr >td')
-				let td = {};
-				let key = document.querySelectorAll('th')
-				key = [].map.call(key,function(el){
+			    let tr = document.querySelectorAll('tbody > tr')
+				let heads = document.querySelectorAll('th');
+				let key = [].map.call(heads,function(el){
 				  return el.innerHTML;
 				})
 
-				for(let i = 0; i < key.length; i++){
-				  td[key[i]] = []; 
+				let arr = [];
+				for(let i = 0; i < tr.length; i++){
+				  let td = tr[i].children;
+				  let arr1 = [];
+				  for(let j = 0; j < td.length; j++){
+				    let arr2 ={};
+					let arr3 = []
+					arr3.push(td[j].innerHTML);
+					arr2[key[j]] = arr3;
+					arr1.push(arr2)
+				  }arr.push(arr1);
 				}
 				
-				
-				for(key in td){ 
-				  let arr = []; 
-				  for(let j = 0; j < tr.length; j++){
-					if(tr[j].getAttribute('data-col') == key){
-					  arr.push(tr[j].innerHTML);
+				if(event.target.getAttribute('class') == 'sort-small'){
+				  let column = event.target.getAttribute('data-col');
+				  let num = event.target.getAttribute('data-num');
+				  arr.sort(sortBig.bind(null, num, column));
+				  let tbody = document.querySelector('tbody');
+				  tbody.innerHTML = '';
+				  for(let k = 0; k < heads.length; k++){
+				    heads[k].classList.remove('sort-small');
+				  }
+				  for(let i = 0; i < tr.length; i++){
+					let tr = document.createElement('tr')
+					tbody.appendChild(tr);
+					for(let j = 0; j < 12; j++){
+					  for(key in arr[i][j]){
+					  let td = document.createElement('td');
+					  td.innerHTML = arr[i][j][key];
+					  tr.appendChild(td);
+					  } 
 					}
 				  }
-				  td[key] = arr;				    
+				  event.target.classList.add('sort-big');
+				} else {
+				  let column = event.target.getAttribute('data-col');
+				  let num = event.target.getAttribute('data-num');
+				  arr.sort(sortSmall.bind(null, num, column));
+				  let tbody = document.querySelector('tbody');
+				  tbody.innerHTML = '';
+				  for(let k = 0; k < heads.length; k++){
+				    heads[k].classList.remove('sort-big');
+					heads[k].classList.remove('sort-small');
+				  }
+				  for(let i = 0; i < tr.length; i++){
+					let tr = document.createElement('tr')
+					tbody.appendChild(tr);
+					for(let j = 0; j < 12; j++){
+					  for(key in arr[i][j]){
+					  let td = document.createElement('td');
+					  td.setAttribute('data-col', key)
+					  td.innerHTML = arr[i][j][key];
+					  tr.appendChild(td);
+					  } 
+					}
+				  }
+				  event.target.classList.add('sort-small');
 				}
-
-				//if(event.target.classList.contains('sort-small')){
-				  let test = event.target.getAttribute('data-col');
-				  td[test].sort(sortBig)
-				  console.log(td[test].sort(sortBig.bind(test)))
-				  console.log(td['Фамилия'])
-				//}  
+				
 			  }
 			  return false;
 			}
 			
-			function sortSmall(a,b,test){
-			  return a[test] - b[test];
+			function sortSmall(num, column, a, b){
+			  if(isNaN(a[num][column])){
+			    if(a[num][column].join().toLowerCase() > b[num][column].join().toLowerCase()){
+				  return 1;
+				}else {
+				  return -1;
+				}
+			  } else {
+			    return a[num][column] - b[num][column];
+			  }	
 			}
 			
-			function sortBig(a,b){
-			  return b - a;
+			function sortBig(num, column, a, b){
+			  if(isNaN(a[num][column])){
+			    if(b[num][column].join().toLowerCase() > a[num][column].join().toLowerCase()){
+				  return 1;
+				}else {
+				  return -1;
+				}  
+			  } else {
+			    return b[num][column] - a[num][column];
+			  }	
 			}
 			
 		</script>
